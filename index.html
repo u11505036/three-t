@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#111827" />
+<title>資優教育三大充實理論｜互動實練版</title>
+<style>
+:root{
+  --bg:#f4f6f9;
+  --panel:#ffffff;
+  --ink:#18212f;
+  --muted:#667085;
+  --line:#dfe5ec;
+  --deep:#111827;
+  --soft:#eef2f7;
+  --ok:#eaf8ef;
+  --warn:#fff5df;
+  --danger:#fff0f0;
+  --shadow:0 14px 36px rgba(17,24,39,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",
+  "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  line-height:1.72;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px 90px}
+.hero{
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.85),transparent 30%),
+    linear-gradient(145deg,#ffffff 0%,#edf1f6 100%);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:34px;
+  box-shadow:var(--shadow);
+}
+.eyebrow{font-size:.82rem;font-weight:800;letter-spacing:.1em;color:#596273;text-transform:uppercase}
+h1{font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.03;margin:.35rem 0 1rem;letter-spacing:-.04em}
+h2{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.2;margin:0 0 12px}
+h3{font-size:1.18rem;margin:.2rem 0 .45rem}
+p{margin:.55rem 0}
+.lead{max-width:900px;font-size:1.08rem;color:#374151}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.chip{background:#111827;color:#fff;border-radius:999px;padding:7px 11px;font-size:.88rem;font-weight:800}
+nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+nav a{
+  text-decoration:none;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:8px 11px;font-weight:750;
+}
+section{margin-top:28px}
+.panel{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 8px 24px rgba(17,24,39,.035);
+}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.muted{color:var(--muted)}
+.small{font-size:.9rem;color:var(--muted)}
+.tag{
+  display:inline-block;background:var(--deep);color:#fff;
+  border-radius:999px;padding:5px 9px;font-size:.78rem;font-weight:850;letter-spacing:.04em
+}
+.model-title{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bigverb{
+  display:inline-block;margin-top:8px;padding:8px 12px;border-radius:12px;
+  background:var(--soft);font-weight:900
+}
+.callout{
+  margin-top:14px;padding:14px 16px;border-left:4px solid #111827;
+  background:#f8fafc;border-radius:12px
+}
+.steps{display:grid;gap:10px;margin-top:14px}
+.step{
+  display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;
+  border:1px solid #e7ebf0;background:#fbfcfd;border-radius:14px;padding:12px
+}
+.num{
+  width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:#111827;color:white;font-weight:900
+}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{
+  border:0;border-radius:12px;padding:10px 13px;
+  background:#111827;color:white;font-weight:850
+}
+.btn.alt{background:#fff;color:#111827;border:1px solid var(--line)}
+.btn.ghost{background:#eef2f7;color:#111827}
+.btn:active{transform:translateY(1px)}
+.workspace{
+  margin-top:16px;padding:16px;border:1px dashed #c7d0da;border-radius:18px;background:#fbfcfe
+}
+.live{
+  margin-top:12px;padding:14px;border-radius:14px;background:#eef2ff;display:none
+}
+.ok{background:var(--ok)!important}
+.warn{background:var(--warn)!important}
+.bad{background:var(--danger)!important}
+.progress{
+  height:10px;background:#e8edf2;border-radius:999px;overflow:hidden;margin:10px 0 4px
+}
+.progress > div{height:100%;width:0;background:#111827;transition:width .35s ease}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.choice{
+  text-align:left;border:1px solid var(--line);background:#fff;color:#18212f;
+  border-radius:14px;padding:12px;font-weight:700
+}
+.choice.active{outline:3px solid #111827;background:#f3f4f6}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:white;
+  border-radius:999px;padding:7px 10px;margin:4px;font-size:.9rem
+}
+.draggable{
+  user-select:none;border:1px solid var(--line);background:#fff;border-radius:13px;padding:10px 12px;
+  margin:7px 0;font-weight:750;cursor:grab
+}
+.draggable.selected{outline:3px solid #111827}
+.dropzone{
+  min-height:76px;border:2px dashed #cbd5df;border-radius:14px;padding:10px;background:#fafbfc
+}
+.dropzone.good{border-color:#4b5563;background:#f3f4f6}
+.matrix{
+  display:grid;grid-template-columns:160px repeat(5,minmax(120px,1fr));
+  gap:1px;background:#dfe5ec;border:1px solid #dfe5ec;border-radius:14px;overflow:auto
+}
+.matrix > div{background:white;padding:10px;min-height:72px}
+.matrix .head{background:#f3f4f6;font-weight:900;min-width:120px}
+.matrix .side{background:#f8fafc;font-weight:900;position:sticky;left:0;z-index:1}
+.matrix .cell{cursor:pointer;transition:.18s}
+.matrix .cell:hover{background:#f4f6f8}
+.matrix .cell.on{background:#e9eef5;font-weight:800}
+.scenario{
+  border:1px solid var(--line);background:#fff;border-radius:16px;padding:14px;margin-top:12px
+}
+.score{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px
+}
+.score .box{background:#f7f9fb;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.score strong{font-size:1.35rem}
+table{width:100%;border-collapse:collapse;font-size:.94rem}
+th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f7f9fb;position:sticky;top:0}
+.scroll{overflow:auto;border:1px solid var(--line);border-radius:16px}
+.exam{
+  background:#111827;color:white;border-radius:18px;padding:18px;margin-top:16px
+}
+.exam code{background:rgba(255,255,255,.12);padding:2px 6px;border-radius:7px}
+.qrgrid{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:center}
+#qr{width:200px;height:200px;border:1px solid var(--line);border-radius:16px;background:white;padding:8px}
+.urlrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.urlrow input{flex:1;min-width:260px;border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.kicker{font-weight:900;font-size:1.04rem}
+.badge-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.badge{background:#f1f4f7;border:1px solid #e1e6eb;padding:6px 9px;border-radius:10px;font-size:.88rem}
+.hidden{display:none}
+footer{text-align:center;color:var(--muted);font-size:.9rem;margin-top:34px}
+@media(max-width:860px){
+  .g2,.g3,.choice-grid,.score,.qrgrid{grid-template-columns:1fr}
+  .hero{padding:24px}
+  .matrix{grid-template-columns:135px repeat(5,150px)}
+  #qr{width:180px;height:180px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Gifted Education · Interactive Study Lab</div>
+    <h1>三大充實理論<br>不是背，是直接操作</h1>
+    <p class="lead">
+      阮儒林（Renzulli）三合充實、普渡三階段充實、Tannenbaum 矩陣充實。
+      同一頁完成「定義 → 實練 → 比較」，而且每一套理論都把核心動作做成真正可操作的互動。
+    </p>
+    <div class="chips">
+      <span class="chip">阮儒林：選路徑</span>
+      <span class="chip">普渡：解鎖階段</span>
+      <span class="chip">矩陣：組課程</span>
+      <span class="chip">最後：比較與決策</span>
+    </div>
+    <nav>
+      <a href="#overview">總覽</a>
+      <a href="#renzulli">阮儒林</a>
+      <a href="#purdue">普渡</a>
+      <a href="#matrix">矩陣</a>
+      <a href="#compare">比較</a>
+      <a href="#exam">申論</a>
+      <a href="#qrsec">QR Code</a>
+    </nav>
+  </header>
+
+  <section id="overview">
+    <div class="panel">
+      <h2>先抓三套理論的「核心動詞」</h2>
+      <div class="grid g3">
+        <div class="panel">
+          <span class="tag">Renzulli</span>
+          <h3>阮儒林三合充實</h3>
+          <div class="bigverb">選路徑</div>
+          <p>先評估學生、濃縮原有課程，再依興趣與能力安排探索、訓練，最後讓適合的學生進入真實問題探究。</p>
+        </div>
+        <div class="panel">
+          <span class="tag">Purdue</span>
+          <h3>普渡三階段充實</h3>
+          <div class="bigverb">逐階解鎖</div>
+          <p>由基本思考技巧開始，進入創造性問題解決，再推進到獨立研究發展。</p>
+        </div>
+        <div class="panel">
+          <span class="tag">Tannenbaum</span>
+          <h3>矩陣充實</h3>
+          <div class="bigverb">組課程</div>
+          <p>以傳統學科為核心，透過多種增添方式，把高層次認知與社會情意發展編進課程。</p>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>一句話區辨：</strong>
+        阮儒林重點是「依學生與任務決定走哪條充實路徑」；
+        普渡重點是「能力訓練由淺入深逐階發展」；
+        矩陣重點是「把原課程當核心，再有系統地加深、加廣與外接」。
+      </div>
+    </div>
+  </section>
+
+  <section id="renzulli">
+    <div class="panel">
+      <div class="model-title">
+        <span class="tag">MODEL 01</span>
+        <h2>阮儒林（Renzulli）三合充實模式</h2>
+      </div>
+      <p class="muted">這一區不是按一下看答案，而是讓你自己把一名學生送進適合的充實路徑。</p>
+
+      <div class="grid g2">
+        <div class="panel">
+          <h3>定義與骨架</h3>
+          <p><strong>資優三環：</strong>中等以上能力、工作投入、創造力。</p>
+          <p><strong>三類充實：</strong>Type I 一般探索、Type II 團體訓練、Type III 個別／小組真實問題探究。</p>
+          <p><strong>五步驟：</strong>評估 → 課程濃縮 → 探究活動 → 團體訓練 → 個別／小組真實問題探討。</p>
+          <p><strong>才能庫：</strong>先形成約 15%–20% 的才能庫，再依興趣與能力判斷是否進一步進入 Type III。</p>
+          <div class="callout">
+            Type III 必抓四件事：<strong>問題釐清、方法學運用、時間管理、成果／報告呈現。</strong>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>實練：把小安送進適合路徑</h3>
+          <p>小安數理能力佳，對「校園飲水機為什麼常被浪費」特別有興趣，但一般數學課已有大量內容對他過於簡單。</p>
+
+          <div class="workspace">
+            <div class="kicker">Step 1｜先選你要做的處理</div>
+            <div class="choice-grid">
+              <button class="choice" onclick="rzPick(this,'評估')">評估學生興趣、能力與需求</button>
+              <button class="choice" onclick="rzPick(this,'濃縮')">把已熟練的一般課程濃縮</button>
+              <button class="choice" onclick="rzPick(this,'探索')">安排相關議題探索活動</button>
+              <button class="choice" onclick="rzPick(this,'訓練')">補研究與溝通工具</button>
+            </div>
+            <div class="progress"><div id="rzbar"></div></div>
+            <div class="small" id="rzcount">已完成 0 / 4 個前置處理</div>
+          </div>
+
+          <div class="workspace">
+            <div class="kicker">Step 2｜現在能不能進 Type III？</div>
+            <div class="btnrow">
+              <button class="btn" onclick="rzJudge(true)">進入 Type III</button>
+              <button class="btn alt" onclick="rzJudge(false)">先不要</button>
+            </div>
+            <div id="rzresult" class="live"></div>
+          </div>
+
+          <div id="rztype3" class="workspace hidden">
+            <div class="kicker">Step 3｜真正做一次 Type III 專案</div>
+            <p>請依序完成四個環節：</p>
+            <div id="rzTasks">
+              <button class="btn ghost" onclick="rzTask(this,0)">① 問題釐清：把「浪費水」縮成可研究問題</button>
+              <button class="btn ghost" onclick="rzTask(this,1)">② 方法學：選觀察、訪談或數據紀錄方式</button>
+              <button class="btn ghost" onclick="rzTask(this,2)">③ 時間管理：排試測、正式蒐集與整理</button>
+              <button class="btn ghost" onclick="rzTask(this,3)">④ 成果呈現：製作數據圖＋改善建議</button>
+            </div>
+            <div id="rzDone" class="live"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exam">
+        <strong>考試抓法：</strong>
+        若申論要寫這套，主線可以直接用：
+        <code>三環 → 才能庫 15%–20% → 五步驟 → Type I/II/III → Type III 四要素</code>。
+      </div>
+    </div>
+  </section>
+
+  <section id="purdue">
+    <div class="panel">
+      <div class="model-title">
+        <span class="tag">MODEL 02</span>
+        <h2>普渡（Purdue）三階段充實模式</h2>
+      </div>
+      <p class="muted">這套的重點是「階段感」：不是隨便三種活動，而是能力往後堆疊。</p>
+
+      <div class="grid g2">
+        <div class="panel">
+          <h3>定義與骨架</h3>
+          <p><strong>對象：</strong>以國小資優生、抽離式資優教育情境為主。</p>
+          <p><strong>辨識條件（課堂版本）：</strong>IQ 120，數學、語文、自然科學、社會科學等學科成就可參考 PR95 以上。</p>
+          <div class="steps">
+            <div class="step"><div class="num">1</div><div><strong>基本思考技巧</strong><br>先把觀察、比較、分類、推理等基本工具建立起來。</div></div>
+            <div class="step"><div class="num">2</div><div><strong>創造性問題解決方法的探索</strong><br>開始面對較開放的問題，練發散、重組、找替代方案。</div></div>
+            <div class="step"><div class="num">3</div><div><strong>獨立研究發展</strong><br>學生逐漸自己定題、選方法、蒐集資料並完成成果。</div></div>
+          </div>
+          <p class="small">課堂筆記另抓到「12–16 次」的實施節奏。</p>
+        </div>
+
+        <div class="panel">
+          <h3>實練：三關解鎖</h3>
+          <p>假想學生小晴想研究「為什麼校園某些地方特別容易塞車？」你要先幫她完成前一階段，才能進下一階段。</p>
+
+          <div class="workspace">
+            <div class="kicker">第一階段｜基本思考技巧</div>
+            <p>點出所有適合的基本思考工具：</p>
+            <div class="badge-row" id="pdStage1">
+              <button class="pill" data-ok="1" onclick="pdToggle(this)">觀察</button>
+              <button class="pill" data-ok="1" onclick="pdToggle(this)">比較</button>
+              <button class="pill" data-ok="1" onclick="pdToggle(this)">分類</button>
+              <button class="pill" data-ok="0" onclick="pdToggle(this)">直接公布結論</button>
+            </div>
+            <div class="btnrow"><button class="btn" onclick="pdCheck1()">檢查第一階段</button></div>
+            <div id="pd1res" class="live"></div>
+          </div>
+
+          <div id="pd2box" class="workspace hidden">
+            <div class="kicker">第二階段｜創造性問題解決</div>
+            <p>現在請把處理順序排成「先發散 → 再重組 → 再選擇可行方案」。</p>
+            <div id="pdOrder">
+              <div class="draggable" draggable="true" data-key="發散">列出所有可能原因</div>
+              <div class="draggable" draggable="true" data-key="重組">把原因重新分類與連結</div>
+              <div class="draggable" draggable="true" data-key="選擇">選出可驗證的假設</div>
+            </div>
+            <div class="btnrow">
+              <button class="btn alt" onclick="shufflePurdue()">打亂順序</button>
+              <button class="btn" onclick="pdCheck2()">檢查順序</button>
+            </div>
+            <div id="pd2res" class="live"></div>
+          </div>
+
+          <div id="pd3box" class="workspace hidden">
+            <div class="kicker">第三階段｜獨立研究發展</div>
+            <p>選一個研究輸出，系統會把前兩階段能力接上去：</p>
+            <div class="choice-grid">
+              <button class="choice" onclick="pdResearch(this,'觀察校門口車流＋訪談學生')">車流觀察＋訪談</button>
+              <button class="choice" onclick="pdResearch(this,'比較不同出入口與時段')">出入口與時段比較</button>
+              <button class="choice" onclick="pdResearch(this,'提出改善動線並測試')">動線改善方案</button>
+              <button class="choice" onclick="pdResearch(this,'完成校園交通小型研究報告')">研究報告</button>
+            </div>
+            <div id="pd3res" class="live"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exam">
+        <strong>考試抓法：</strong>
+        這套最穩的申論骨架就是：
+        <code>國小／抽離式 → 對象條件 → 第一階段基本思考 → 第二階段創造性問題解決 → 第三階段獨立研究</code>。
+      </div>
+    </div>
+  </section>
+
+  <section id="matrix">
+    <div class="panel">
+      <div class="model-title">
+        <span class="tag">MODEL 03</span>
+        <h2>Tannenbaum 矩陣充實模式</h2>
+      </div>
+      <p class="muted">這套不是一路過關，而是「把核心學科＋不同充實方式」編進一張課程設計圖。</p>
+
+      <div class="grid g2">
+        <div class="panel">
+          <h3>定義與骨架</h3>
+          <p><strong>核心：</strong>仍以傳統學科為課程中心，不是把原課程整個丟掉。</p>
+          <p><strong>五種增添方式：</strong></p>
+          <div class="badge-row">
+            <span class="badge">精簡</span>
+            <span class="badge">擴展</span>
+            <span class="badge">計畫性增加</span>
+            <span class="badge">臨時性增加</span>
+            <span class="badge">校外增加</span>
+          </div>
+          <div class="callout">
+            目標不只「多學一點」：
+            一邊拉高<strong>高層次認知歷程</strong>，一邊發展<strong>社會與情意</strong>，
+            如對社會負責、良好觀念、與人和善、情緒承受等。
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>實練：自己組一張矩陣課程</h3>
+          <p>先選核心學科，再點矩陣格。你點亮的格子會即時生成一套充實課程。</p>
+
+          <div class="workspace">
+            <label class="kicker" for="coreSubject">核心學科</label>
+            <select id="coreSubject" onchange="mxUpdateSummary()">
+              <option>自然科學</option>
+              <option>數學</option>
+              <option>語文</option>
+              <option>社會科學</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="workspace">
+        <div class="small">手機可左右滑。點格子開／關；同一列可組合多種方式。</div>
+        <div class="matrix" id="mx">
+          <div class="head">發展面向</div>
+          <div class="head">精簡</div>
+          <div class="head">擴展</div>
+          <div class="head">計畫性增加</div>
+          <div class="head">臨時性增加</div>
+          <div class="head">校外增加</div>
+
+          <div class="side">知識內容</div>
+          <div class="cell" data-row="知識內容" data-col="精簡" onclick="mxToggle(this)">刪減已熟練內容</div>
+          <div class="cell" data-row="知識內容" data-col="擴展" onclick="mxToggle(this)">增加深度與廣度</div>
+          <div class="cell" data-row="知識內容" data-col="計畫性增加" onclick="mxToggle(this)">預先安排專題</div>
+          <div class="cell" data-row="知識內容" data-col="臨時性增加" onclick="mxToggle(this)">追當下突發議題</div>
+          <div class="cell" data-row="知識內容" data-col="校外增加" onclick="mxToggle(this)">接大學／機構資源</div>
+
+          <div class="side">高層認知</div>
+          <div class="cell" data-row="高層認知" data-col="精簡" onclick="mxToggle(this)">把時間讓給高階任務</div>
+          <div class="cell" data-row="高層認知" data-col="擴展" onclick="mxToggle(this)">比較、推論、評鑑</div>
+          <div class="cell" data-row="高層認知" data-col="計畫性增加" onclick="mxToggle(this)">安排研究歷程</div>
+          <div class="cell" data-row="高層認知" data-col="臨時性增加" onclick="mxToggle(this)">即時分析新問題</div>
+          <div class="cell" data-row="高層認知" data-col="校外增加" onclick="mxToggle(this)">真實專家回饋</div>
+
+          <div class="side">社會／情意</div>
+          <div class="cell" data-row="社會／情意" data-col="精簡" onclick="mxToggle(this)">降低重複造成的挫折</div>
+          <div class="cell" data-row="社會／情意" data-col="擴展" onclick="mxToggle(this)">加入倫理與價值討論</div>
+          <div class="cell" data-row="社會／情意" data-col="計畫性增加" onclick="mxToggle(this)">安排合作與責任角色</div>
+          <div class="cell" data-row="社會／情意" data-col="臨時性增加" onclick="mxToggle(this)">回應班級真實事件</div>
+          <div class="cell" data-row="社會／情意" data-col="校外增加" onclick="mxToggle(this)">社區服務／場域參與</div>
+        </div>
+
+        <div class="btnrow">
+          <button class="btn" onclick="mxUpdateSummary()">生成我的矩陣方案</button>
+          <button class="btn alt" onclick="mxReset()">清空</button>
+        </div>
+        <div id="mxSummary" class="live"></div>
+      </div>
+
+      <div class="exam">
+        <strong>考試抓法：</strong>
+        先寫「傳統學科為核心」，再交代
+        <code>精簡／擴展／計畫性增加／臨時性增加／校外增加</code>，
+        最後收在「高層次認知＋社會情意發展」。
+      </div>
+    </div>
+  </section>
+
+  <section id="compare">
+    <div class="panel">
+      <h2>最後比較：不是誰比較好，而是解的問題不同</h2>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>面向</th>
+              <th>阮儒林三合充實</th>
+              <th>普渡三階段</th>
+              <th>Tannenbaum 矩陣</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>核心問題</td>
+              <td>學生目前應走哪種充實路徑？</td>
+              <td>學生能力應如何逐階發展？</td>
+              <td>原有學科課程要怎麼有系統地加深加廣？</td>
+            </tr>
+            <tr>
+              <td>結構</td>
+              <td>才能庫＋五步驟＋Type I/II/III</td>
+              <td>第一→第二→第三階段</td>
+              <td>核心學科 × 多種增添方式 × 發展結果</td>
+            </tr>
+            <tr>
+              <td>最鮮明特色</td>
+              <td>真實問題探究與個別化路徑</td>
+              <td>能力訓練的階段性</td>
+              <td>課程設計的系統性與多向度</td>
+            </tr>
+            <tr>
+              <td>最好記的動詞</td>
+              <td><strong>選路徑</strong></td>
+              <td><strong>逐階解鎖</strong></td>
+              <td><strong>組課程</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="workspace">
+        <h3>實練：把需求丟給最適合的模式</h3>
+        <p>先點一張需求卡，再點下面的模式。你是在做「決策」，不是背配對。</p>
+
+        <div id="cmpCards">
+          <div class="draggable" onclick="cmpSelect(this)" data-answer="R">A｜學生已經有強烈興趣，需要探索→訓練→真實問題研究的完整路徑。</div>
+          <div class="draggable" onclick="cmpSelect(this)" data-answer="P">B｜老師希望學生從基本思考、創造性解題一路練到獨立研究。</div>
+          <div class="draggable" onclick="cmpSelect(this)" data-answer="T">C｜老師不想另開一套課程，而想以原數學課為核心做精簡、擴展與校外延伸。</div>
+        </div>
+
+        <div class="grid g3" style="margin-top:12px">
+          <button class="choice" onclick="cmpDrop('R')">阮儒林</button>
+          <button class="choice" onclick="cmpDrop('P')">普渡</button>
+          <button class="choice" onclick="cmpDrop('T')">矩陣</button>
+        </div>
+        <div id="cmpres" class="live"></div>
+
+        <div class="score">
+          <div class="box"><span class="small">阮儒林</span><br><strong id="scR">0</strong></div>
+          <div class="box"><span class="small">普渡</span><br><strong id="scP">0</strong></div>
+          <div class="box"><span class="small">矩陣</span><br><strong id="scT">0</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="exam">
+    <div class="panel">
+      <h2>申論作答模式：選一套深入解析</h2>
+      <p>老師已暗示三個模式可能「擇一深入」。這裡直接把三套的穩定答題骨架放在一起。</p>
+
+      <div class="grid g3">
+        <div class="panel">
+          <span class="tag">R</span>
+          <h3>阮儒林</h3>
+          <p>① 理論核心與三環<br>② 才能庫與評估<br>③ 五步驟<br>④ Type I/II/III<br>⑤ Type III 四要素<br>⑥ 用一名學生舉例</p>
+        </div>
+        <div class="panel">
+          <span class="tag">P</span>
+          <h3>普渡</h3>
+          <p>① 對象與抽離式情境<br>② 第一階段基本思考<br>③ 第二階段創造性問題解決<br>④ 第三階段獨立研究<br>⑤ 用同一學生展示能力如何逐步成熟</p>
+        </div>
+        <div class="panel">
+          <span class="tag">T</span>
+          <h3>矩陣</h3>
+          <p>① 傳統學科為核心<br>② 五種增添方式<br>③ 認知與情意雙軸<br>④ 具體課程矩陣例子<br>⑤ 說明為何比單純加量更有系統</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>最後核對：</strong>
+        三套不要混成「都只是加深加廣」。
+        阮儒林是<strong>路徑設計</strong>；普渡是<strong>階段發展</strong>；矩陣是<strong>課程編排</strong>。
+      </div>
+    </div>
+  </section>
+
+  <section id="qrsec">
+    <div class="panel qrgrid">
+      <div>
+        <img id="qr" alt="目前網站 QR Code" />
+      </div>
+      <div>
+        <h2>QR Code 分享</h2>
+        <p>部署到 GitHub Pages 後，這裡會自動抓目前頁面網址。也可以手動貼新網址更新。</p>
+        <div class="urlrow">
+          <input id="urlInput" type="text" />
+          <button class="btn" onclick="makeQR()">更新 QR</button>
+          <button class="btn alt" onclick="copyURL()">複製網址</button>
+        </div>
+        <p class="small">QR 圖片使用公開 QR 服務產生；GitHub Pages 上線後即可直接掃。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    資優教育三大充實理論｜先定義 → 真實操作 → 最後比較
+  </footer>
+</div>
+
+<script>
+// ---------- Renzulli ----------
+const rzSet = new Set();
+function rzPick(btn,key){
+  if(rzSet.has(key)){ rzSet.delete(key); btn.classList.remove('active'); }
+  else{ rzSet.add(key); btn.classList.add('active'); }
+  const n=rzSet.size;
+  document.getElementById('rzbar').style.width=(n/4*100)+'%';
+  document.getElementById('rzcount').textContent=`已完成 ${n} / 4 個前置處理`;
+}
+function rzJudge(go){
+  const el=document.getElementById('rzresult');
+  el.style.display='block';
+  if(go && rzSet.size>=3){
+    el.className='live ok';
+    el.innerHTML='✅ 可以考慮進 Type III：前面已完成足夠的評估、課程調整、探索或工具準備。現在把興趣推進成真實問題探究。';
+    document.getElementById('rztype3').classList.remove('hidden');
+  }else if(go){
+    el.className='live warn';
+    el.innerHTML='⚠️ 先別急。Type III 不是看到資優生就直接丟研究；至少要先掌握學生狀況、興趣與必要工具。';
+  }else{
+    el.className='live';
+    el.innerHTML='你選擇暫不進 Type III。這可以是合理決策：三類活動不是每個學生都要同時走到底。';
+  }
+}
+const rzTaskDone=[false,false,false,false];
+function rzTask(btn,i){
+  rzTaskDone[i]=!rzTaskDone[i];
+  btn.classList.toggle('active');
+  const n=rzTaskDone.filter(Boolean).length;
+  const el=document.getElementById('rzDone');
+  el.style.display='block';
+  if(n===4){
+    el.className='live ok';
+    el.innerHTML='✅ Type III 完整：問題釐清 → 方法學 → 時間管理 → 成果呈現。這才是「真實問題探究」的完整感。';
+  }else{
+    el.className='live';
+    el.innerHTML=`已完成 ${n}/4。Type III 的重點不是只把題目做難，而是把完整探究歷程做出來。`;
+  }
+}
+
+// ---------- Purdue ----------
+function pdToggle(btn){ btn.classList.toggle('active'); }
+function pdCheck1(){
+  const buttons=[...document.querySelectorAll('#pdStage1 .pill')];
+  const selected=buttons.filter(x=>x.classList.contains('active'));
+  const correct=selected.length===3 && selected.every(x=>x.dataset.ok==='1');
+  const el=document.getElementById('pd1res');
+  el.style.display='block';
+  if(correct){
+    el.className='live ok';
+    el.innerHTML='✅ 第一階段通過：你先把觀察、比較、分類等基本思考工具建立起來。第二階段解鎖。';
+    document.getElementById('pd2box').classList.remove('hidden');
+  }else{
+    el.className='live warn';
+    el.innerHTML='還差一點。第一階段的重點是「基本思考技巧」，不是直接跳到研究結論。';
+  }
+}
+let dragSrc=null;
+document.addEventListener('dragstart',e=>{
+  if(e.target.classList.contains('draggable') && e.target.closest('#pdOrder')){
+    dragSrc=e.target;
+  }
+});
+document.addEventListener('dragover',e=>{
+  if(e.target.classList.contains('draggable') && e.target.closest('#pdOrder')) e.preventDefault();
+});
+document.addEventListener('drop',e=>{
+  if(e.target.classList.contains('draggable') && e.target.closest('#pdOrder')){
+    e.preventDefault();
+    if(dragSrc && dragSrc!==e.target){
+      const box=document.getElementById('pdOrder');
+      const nodes=[...box.children];
+      const a=nodes.indexOf(dragSrc), b=nodes.indexOf(e.target);
+      if(a<b) box.insertBefore(dragSrc,e.target.nextSibling);
+      else box.insertBefore(dragSrc,e.target);
+    }
+  }
+});
+function shufflePurdue(){
+  const box=document.getElementById('pdOrder');
+  [...box.children].sort(()=>Math.random()-.5).forEach(x=>box.appendChild(x));
+}
+function pdCheck2(){
+  const keys=[...document.querySelectorAll('#pdOrder .draggable')].map(x=>x.dataset.key);
+  const correct=keys.join('|')==='發散|重組|選擇';
+  const el=document.getElementById('pd2res');
+  el.style.display='block';
+  if(correct){
+    el.className='live ok';
+    el.innerHTML='✅ 第二階段通過：先發散、再重組、再選擇可驗證方案。第三階段獨立研究解鎖。';
+    document.getElementById('pd3box').classList.remove('hidden');
+  }else{
+    el.className='live warn';
+    el.innerHTML='順序還沒到位。創造性問題解決通常先讓可能性打開，再重組，最後才收斂到可行方案。';
+  }
+}
+function pdResearch(btn,text){
+  document.querySelectorAll('#pd3box .choice').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');
+  const el=document.getElementById('pd3res');
+  el.style.display='block';
+  el.className='live ok';
+  el.innerHTML=`✅ 第三階段成立：${text}。前兩階段不是消失，而是變成獨立研究時真正能用的工具。`;
+}
+
+// ---------- Matrix ----------
+function mxToggle(el){ el.classList.toggle('on'); mxUpdateSummary(); }
+function mxReset(){
+  document.querySelectorAll('#mx .cell').forEach(x=>x.classList.remove('on'));
+  mxUpdateSummary();
+}
+function mxUpdateSummary(){
+  const subject=document.getElementById('coreSubject').value;
+  const selected=[...document.querySelectorAll('#mx .cell.on')];
+  const el=document.getElementById('mxSummary');
+  el.style.display='block';
+  if(selected.length===0){
+    el.className='live';
+    el.innerHTML=`目前核心是「${subject}」，但還沒加入任何充實處理。請點矩陣格子。`;
+    return;
+  }
+  const items=selected.map(x=>`${x.dataset.row} × ${x.dataset.col}：${x.textContent.trim()}`);
+  const cols=[...new Set(selected.map(x=>x.dataset.col))];
+  const rows=[...new Set(selected.map(x=>x.dataset.row))];
+  el.className='live ok';
+  el.innerHTML=`<strong>你的矩陣方案：</strong><br>
+  核心學科：${subject}<br>
+  使用方式：${cols.join('、')}<br>
+  發展面向：${rows.join('、')}<br><br>
+  ${items.map(x=>'• '+x).join('<br>')}`;
+}
+
+// ---------- Compare ----------
+let cmpCurrent=null;
+const cmpScore={R:0,P:0,T:0};
+function cmpSelect(el){
+  document.querySelectorAll('#cmpCards .draggable').forEach(x=>x.classList.remove('selected'));
+  el.classList.add('selected');
+  cmpCurrent=el;
+}
+function cmpDrop(model){
+  const el=document.getElementById('cmpres');
+  el.style.display='block';
+  if(!cmpCurrent){
+    el.className='live warn';
+    el.innerHTML='先點一張需求卡，再選模式。';
+    return;
+  }
+  const ans=cmpCurrent.dataset.answer;
+  if(ans===model){
+    el.className='live ok';
+    el.innerHTML='✅ 配對正確。你抓到的是「這套模式正在解什麼問題」，不是只背名稱。';
+    cmpScore[model]++;
+    document.getElementById('sc'+model).textContent=cmpScore[model];
+    cmpCurrent.style.opacity='.45';
+    cmpCurrent.style.pointerEvents='none';
+    cmpCurrent.classList.remove('selected');
+    cmpCurrent=null;
+  }else{
+    const names={R:'阮儒林',P:'普渡',T:'矩陣'};
+    el.className='live warn';
+    el.innerHTML=`這張卡不太像 ${names[model]}。再看一次核心動詞：選路徑／逐階解鎖／組課程。`;
+  }
+}
+
+// ---------- QR ----------
+function currentURL(){
+  if(location.protocol==='file:') return 'https://你的GitHub帳號.github.io/你的Repo/';
+  return location.href.split('#')[0];
+}
+function makeQR(){
+  const input=document.getElementById('urlInput');
+  const url=(input.value||'').trim() || currentURL();
+  input.value=url;
+  document.getElementById('qr').src='https://api.qrserver.com/v1/create-qr-code/?size=320x320&data='+encodeURIComponent(url);
+}
+async function copyURL(){
+  const url=document.getElementById('urlInput').value.trim();
+  try{
+    await navigator.clipboard.writeText(url);
+    alert('網址已複製');
+  }catch(e){
+    alert('請手動複製：'+url);
+  }
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('urlInput').value=currentURL();
+  makeQR();
+  mxUpdateSummary();
+});
+</script>
+</body>
+</html>
